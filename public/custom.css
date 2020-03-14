@@ -1,0 +1,8 @@
+.error {
+    color: red
+}
+
+.clear-border {
+    border-right: none !important;
+    border-left: none !important;
+}
