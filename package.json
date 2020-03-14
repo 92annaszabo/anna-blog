@@ -1,0 +1,26 @@
+{
+  "name": "anna-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/92annaszabo/anna-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/92annaszabo/anna-blog/issues"
+  },
+  "homepage": "https://github.com/92annaszabo/anna-blog#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "jquery": "^3.4.1",
+    "popper": "^1.0.1"
+  }
+}
