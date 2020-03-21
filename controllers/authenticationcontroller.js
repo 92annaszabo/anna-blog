@@ -24,12 +24,12 @@ module.exports = {
         
     },
 
-    postLogin(req,res) {
+    async postLogin(req,res) {
         const userdata = req.body;
         const loginService = new LoginService(); //megnézi, hogy létezik-e a user
         const sessionService = new SessionService(); // regisztrál a userhez egy sessiont (user-sessionid)
 
-        const user = loginService.getAuthenticatedUser(userdata.username, userdata.password);
+        const user = await loginService.getAuthenticatedUser(userdata.username, userdata.password)
         
         if(user){
             const session = sessionService.registerSession(user);
@@ -39,6 +39,7 @@ module.exports = {
         else {
             res.redirect('login?error=credentials');
         }
+                
     },
 
     getLogout(req,res){

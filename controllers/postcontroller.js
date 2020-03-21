@@ -4,12 +4,24 @@ const { db_get, db_getAll, db_run } = require('../services/db-service');
 
 module.exports = {
     getPosts(req,res){
-        const posts = db_getAll("select * from posts");
-           
-        res.render('postlist', {
-            title: title,
-            posts: postList
-        });
+        const posts = db_getAll("SELECT users.id as userID, users.username, * from posts JOIN users WHERE posts.author = userID");
+        Promise.all([posts]).then((data) => {
+            const [posts] = data
+            const refinedData = posts.map((post) => {
+                console.log(post)
+                return {
+                    author: post.username,
+                    title: post.title,
+                    content: post.content,
+                    date: post.created_at
+                 }
+            })
+        
+            res.render('postlist', {
+                title: "Anna's blog",
+                posts: refinedData
+            });
+        })
     },
     getNewPost(req, res){
         const error = req.query.error;
@@ -27,20 +39,21 @@ module.exports = {
 
     postNewPost(req, res){
         const user = sessionService.findUser(req.cookies.authcookie)
+        console.log(user)
         const {postTitle, postContent} = req.body;
+
         if(!postTitle || !postContent){
             res.redirect('/post?error=noContent')
 
         }
         else {
-            today = new Date
-            postList[postList.length] = {
-                author : user,
-                date: today.toLocaleDateString(),
-                title: postTitle,
-                post: postContent
-            }
-            res.redirect('/')
+            const today = new Date
+            const created_at = today.toLocaleDateString()
+            Promise.all([db_run(`INSERT INTO posts (author, title, content, created_at) VALUES ('1', '${postTitle}', '${postContent}', '${created_at}')`)])
+            .then(() => {
+                res.redirect('/')
+            })
+           
         }
        
     }
