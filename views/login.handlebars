@@ -14,6 +14,11 @@
                 <p class="error">{{errorMessage}}</p>
                 <input type='submit' class='btn btn-primary w-100' value='Küldés'>
             </div>
+            {{#if loggedOutMessage}}
+                <div class="alert alert-success" role="alert">
+                    {{loggedOutMessage}}
+                </div>
+            {{/if}}
         </form>
     </div>
     <div class='col-md-3'></div>

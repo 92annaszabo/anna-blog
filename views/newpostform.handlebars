@@ -1,0 +1,44 @@
+<div class='row'>
+    <div class='col-md-3'></div>
+    <div class='col-md-6'>
+        <form action ='/post' method="POST" id='newPostForm' >
+            <div class='form-group'>
+                <label for='postTitle'>Title:</label>
+                <input type='text' class='form-control' name='postTitle' id='postTitle'>
+
+            </div>
+            <div class='form-group'>
+                <label for='postContent'>Content:</label>
+                <textarea class='form-control' name='postContent' id='postContent'></textarea>
+            </div>
+            <div class='form-group'>
+                <a class='btn btn-secondary' href='/admin'> Discard </a>
+                <input type='submit' id='publishPost' class='btn btn-primary' value='Publish'>
+                <p class="error">{{errorMessage}}</p>
+            </div>
+            <div id='noTitleError' class='d-none error'>  
+                    Client validation: Title is mandatory
+            </div>
+
+        </form>
+    </div>
+    <div class='col-md-3'></div>
+</div>
+
+<script>
+
+     const form = document.querySelector('#newPostForm')
+     const titleField = document.querySelector('#postTitle')
+     const errorMessage = document.querySelector('#noTitleError')
+     form.addEventListener('submit', checkInputFields)
+  
+     function checkInputFields(event) {
+        if(!titleField.value){
+            event.preventDefault();
+            console.log('nincs html');
+            errorMessage.classList.remove('d-none')
+        }
+
+     }
+
+</script>
