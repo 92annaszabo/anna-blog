@@ -18,7 +18,7 @@
   "homepage": "https://github.com/92annaszabo/anna-blog#readme",
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-handlebars": "^3.1.0",
     "jquery": "^3.4.1",
     "popper": "^1.0.1"
